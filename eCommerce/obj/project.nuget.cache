@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Me18yyg1VEKdculaY0BdvwiallS0zzy467QRsBWRKU/MhNlgEyImiXTDHA4ng37bxL1+BndvDN6kIoha1f2XIQ==",
+  "dgSpecHash": "O1yg5/C36Gxsdgs68YEPDpvPdIsfxeGF1ZEJll8kgt96zy7qEZDr67168IAc6L333B5ck55PTyR7otqDa4p++w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Omran Alaa Eldein\\Desktop\\work\\NTG\\eCommerce\\eCommerce.csproj",
+  "projectFilePath": "C:\\Users\\Omran Alaa Eldein\\Desktop\\work\\eCommerce\\eCommerce\\eCommerce.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Omran Alaa Eldein\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Omran Alaa Eldein\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.2\\microsoft.aspnetcore.jsonpatch.5.0.2.nupkg.sha512",

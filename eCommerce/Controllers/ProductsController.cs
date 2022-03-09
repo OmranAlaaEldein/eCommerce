@@ -41,17 +41,8 @@ namespace eCommerce.Controllers
             try
             {
                 _ecommerceContext.Products.Add(value);
-                
-                for (int i=0;i< value.productVariant.Count;i++) {
-                    _ecommerceContext.Entry(value.productVariant.ElementAt(i)).State = value.productVariant.ElementAt(i).VariantId == 0 ? EntityState.Added : EntityState.Modified;
-                    foreach (var VariantValue in value.productVariant.ElementAt(i).Values)
-                    {
-                        _ecommerceContext.Entry(VariantValue).State = VariantValue.variantValueId == 0 ? EntityState.Added : EntityState.Modified;
-                    }
-                }
                 _ecommerceContext.SaveChanges();
                 return new JsonResult(Ok("Success"));
-
             }
             catch (Exception) {
                 return new JsonResult(System.Net.HttpStatusCode.InternalServerError);
@@ -94,8 +85,16 @@ namespace eCommerce.Controllers
                 var myProduct = _ecommerceContext.Products.FirstOrDefault(s => s.productId == id);
                 if (myProduct != null)
                 {
+                    
                     _ecommerceContext.Products.Remove(myProduct);
                     _ecommerceContext.SaveChanges();
+
+                    var VariantValues = _ecommerceContext.VariantValues.Include(x=>x.variant).ToList();
+                    foreach (var VariantValue in VariantValues)
+                        if (VariantValue.variant==null)
+                            _ecommerceContext.VariantValues.Remove(VariantValue);
+                    _ecommerceContext.SaveChanges();
+                    
                     return new JsonResult(Ok("Success"));
                 }
                 return new JsonResult(NotFound());

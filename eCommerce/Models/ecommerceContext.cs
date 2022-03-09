@@ -8,6 +8,10 @@ namespace eCommerce.Models
 {
     public class ecommerceContext : DbContext
     {
+        public ecommerceContext()
+        {
+        }
+
         public ecommerceContext(DbContextOptions<ecommerceContext> options) : base(options)
         {
 

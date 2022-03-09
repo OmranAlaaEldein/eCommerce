@@ -5689,11 +5689,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Omran Alaa Eldein\\Desktop\\work\\NTG\\eCommerce\\eCommerce.csproj",
+      "projectUniqueName": "C:\\Users\\Omran Alaa Eldein\\Desktop\\work\\eCommerce\\eCommerce\\eCommerce.csproj",
       "projectName": "eCommerce",
-      "projectPath": "C:\\Users\\Omran Alaa Eldein\\Desktop\\work\\NTG\\eCommerce\\eCommerce.csproj",
+      "projectPath": "C:\\Users\\Omran Alaa Eldein\\Desktop\\work\\eCommerce\\eCommerce\\eCommerce.csproj",
       "packagesPath": "C:\\Users\\Omran Alaa Eldein\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Omran Alaa Eldein\\Desktop\\work\\NTG\\eCommerce\\obj\\",
+      "outputPath": "C:\\Users\\Omran Alaa Eldein\\Desktop\\work\\eCommerce\\eCommerce\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Omran Alaa Eldein\\AppData\\Roaming\\NuGet\\NuGet.Config",
