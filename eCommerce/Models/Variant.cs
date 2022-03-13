@@ -12,10 +12,11 @@ namespace eCommerce.Models
         public int VariantId { set; get; }
 
         [StringLength(20, MinimumLength = 2)]
-        public string name { set; get; }
-
-        public virtual ICollection<product> productVariant { set; get; }
-        public ICollection<variantValue> Values { set; get; }
+        public string size { set; get; }
+        public string color { set; get; }
+        public string model { set; get; }
+        public string matrial { set; get; }
+        public  virtual product myProduct { set; get; }
 
 
     }

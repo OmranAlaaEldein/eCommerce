@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerce.Models;
 
 namespace eCommerce.Migrations
 {
     [DbContext(typeof(ecommerceContext))]
-    partial class ecommerceContextModelSnapshot : ModelSnapshot
+    [Migration("20220313081708_correctProject")]
+    partial class correctProject
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,6 +28,9 @@ namespace eCommerce.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int?>("ProductVariantproductId")
+                        .HasColumnType("int");
+
                     b.Property<string>("color")
                         .HasColumnType("nvarchar(max)");
 
@@ -35,16 +40,13 @@ namespace eCommerce.Migrations
                     b.Property<string>("model")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("myProductproductId")
-                        .HasColumnType("int");
-
                     b.Property<string>("size")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("VariantId");
 
-                    b.HasIndex("myProductproductId");
+                    b.HasIndex("ProductVariantproductId");
 
                     b.ToTable("Variants");
                 });
@@ -127,11 +129,11 @@ namespace eCommerce.Migrations
 
             modelBuilder.Entity("eCommerce.Models.Variant", b =>
                 {
-                    b.HasOne("eCommerce.Models.product", "myProduct")
+                    b.HasOne("eCommerce.Models.product", "ProductVariant")
                         .WithMany("productVariant")
-                        .HasForeignKey("myProductproductId");
+                        .HasForeignKey("ProductVariantproductId");
 
-                    b.Navigation("myProduct");
+                    b.Navigation("ProductVariant");
                 });
 
             modelBuilder.Entity("eCommerce.Models.languageWord", b =>

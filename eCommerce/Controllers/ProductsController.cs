@@ -24,14 +24,14 @@ namespace eCommerce.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            var res= _ecommerceContext.Products.Include(x=>x.productVariant).ThenInclude(x=>x.Values).ToList();
+            var res= _ecommerceContext.Products.Include(x=>x.productVariant).ToList();
             return new JsonResult(res);
         }
 
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            var res= _ecommerceContext.Products.Include(x => x.productVariant).ThenInclude(x => x.Values).FirstOrDefault(s => s.productId == id);
+            var res= _ecommerceContext.Products.Include(x => x.productVariant).FirstOrDefault(s => s.productId == id);
             return new JsonResult(res);
         }
 
@@ -58,13 +58,9 @@ namespace eCommerce.Controllers
                 if (myProduct != null)
                 {
                     _ecommerceContext.Entry<product>(myProduct).CurrentValues.SetValues(value);
-                    foreach (var Variant in value.productVariant)
+                    foreach (var variant in value.productVariant)
                     {
-                        _ecommerceContext.Entry(Variant).State = Variant.VariantId == 0 ? EntityState.Added : EntityState.Modified;
-                        foreach (var VariantValue in Variant.Values)
-                        {
-                            _ecommerceContext.Entry(VariantValue).State = VariantValue.variantValueId == 0 ? EntityState.Added : EntityState.Modified;
-                        }
+                        _ecommerceContext.Entry(variant).State = variant.VariantId == 0 ? EntityState.Added : EntityState.Modified;
                     }
                     _ecommerceContext.SaveChanges();
                     return new JsonResult(Ok("Success"));
@@ -82,17 +78,12 @@ namespace eCommerce.Controllers
         {
             try
             {
-                var myProduct = _ecommerceContext.Products.FirstOrDefault(s => s.productId == id);
+                var myProduct = _ecommerceContext.Products.Include(x => x.productVariant).FirstOrDefault(x=>x.productId==id);
                 if (myProduct != null)
-                {
-                    
+                {   
+                    foreach (var Variant in myProduct.productVariant)
+                            _ecommerceContext.Variants.Remove(Variant);
                     _ecommerceContext.Products.Remove(myProduct);
-                    _ecommerceContext.SaveChanges();
-
-                    var VariantValues = _ecommerceContext.VariantValues.Include(x=>x.variant).ToList();
-                    foreach (var VariantValue in VariantValues)
-                        if (VariantValue.variant==null)
-                            _ecommerceContext.VariantValues.Remove(VariantValue);
                     _ecommerceContext.SaveChanges();
                     
                     return new JsonResult(Ok("Success"));
