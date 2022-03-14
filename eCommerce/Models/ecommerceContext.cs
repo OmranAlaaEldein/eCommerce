@@ -19,7 +19,6 @@ namespace eCommerce.Models
 
         public DbSet<product> Products { set; get; }
         public DbSet<Variant> Variants { set; get; }
-        public DbSet<variantValue> VariantValues { set; get; }
         public DbSet<language> Languages { set; get; }
         public DbSet<languageWord> LanguageWords { set; get; }
 
